@@ -1,17 +1,450 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nadzril</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Dede Iyan Supardi, S.T.</title>
+    <!-- Menggunakan font Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
 
+        body {
+            background-color: #F8F6F0; /* Warna latar belakang krem sesuai gambar */
+            color: #333333;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Subtitle / Category Label */
+        .subtitle {
+            color: #8C6B52;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        /* Headings */
+        h1, h2 {
+            font-family: 'Merriweather', serif;
+            color: #1A1A1A;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        /* Divider Line */
+        .divider {
+            border: none;
+            border-top: 1px solid #E5E0D8;
+            margin: 60px 0;
+        }
+
+        /* Navbar Sticky */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(248, 246, 240, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid #E5E0D8;
+            padding: 15px 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666666;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #1A1A1A;
+        }
+
+        /* ------------------ HERO SECTION ------------------ */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .profile-img-container {
+            width: 130px;
+            height: 130px;
+            margin: 20px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero .tags {
+            color: #666666;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .hero .bio-text {
+            color: #666666;
+            max-width: 550px;
+            margin: 0 auto 30px;
+            font-size: 0.95rem;
+        }
+
+        .hero .explore-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #8C6B52;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero .arrow {
+            display: block;
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+
+        /* ------------------ SECTION COMMON ------------------ */
+        section {
+            padding: 20px 0;
+        }
+
+        .section-desc {
+            color: #666666;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        /* Card Component */
+        .card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border: 1px solid #F0ECE1;
+        }
+
+        /* ------------------ BIODATA SECTION ------------------ */
+        .biodata-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .biodata-card .label {
+            color: #8C6B52;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .biodata-card .value {
+            font-weight: 600;
+            color: #1A1A1A;
+            font-size: 0.95rem;
+        }
+
+        /* ------------------ PENDIDIKAN & ORGANISASI ------------------ */
+        .card-header {
+            color: #8C6B52;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 2px;
+        }
+
+        .card-sub {
+            color: #777777;
+            font-size: 0.85rem;
+        }
+
+        .card-text {
+            color: #555555;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* ------------------ KEAHLIAN ------------------ */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background-color: #FFFFFF;
+            border: 1px solid #E2DDD2;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        /* ------------------ HOBI ------------------ */
+        .hobi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .hobi-card {
+            background-color: #EAE6DB; /* Warna kartu hobi abu/krem muda */
+            border-radius: 12px;
+            padding: 25px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hobi-card.light {
+            background-color: #E2E8E4; /* Warna hijau muda lembut untuk hobi ke-3 */
+        }
+
+        .hobi-icon {
+            font-size: 1.3rem;
+        }
+
+        .hobi-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1A1A1A;
+        }
+
+        /* ------------------ FOOTER ------------------ */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.75rem;
+            color: #888888;
+        }
+
+        /* Responsif untuk Layar Kecil (HP) */
+        @media (max-width: 600px) {
+            .biodata-grid, .hobi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
 <body>
-  <a href="#">HOME</a> | <a href="#">PROFIL</a> | <a href="profil.html">JADWAL</a> | <a href="praktikum">PRAKTIKUM</a><br>
-  <h1>Muhammad Nadzril Ilham</h1>
+    <a href="#">HOME</a> | <a href="#">PROFIL</a> | <a href="profil.html">JADWAL</a> | <a href="praktikum">PRAKTIKUM</a><br>
   <p>Welcome to my website</p>
   <a href="praktikum">klik disini</a>
-</body>
 
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="subtitle">PORTFOLIO PRIBADI</div>
+        <div class="profile-img-container">
+            <!-- Ganti src dengan link foto Anda jika sudah ada -->
+            <img src="bagot.jpg" alt="Nadzril Ilham">
+        </div>
+        <h1>Muhammad Nadzril Ilham</h1>
+        <div class="subtitle">Gitarin - Student - IT Teknisi </div>
+        <p class="bio-text">
+            Halo! Saya senang belajar hal baru, bekerja bersama orang lain, dan mengubah ide menjadi sesuatu yang bermanfaat.
+        </p>
+        <a href="#biodata" class="explore-btn">
+            JELAJAHI PROFIL
+            <span class="arrow">↓</span>
+        </a>
+    </header>
+
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#biodata">Biodata</a></li>
+            <li><a href="#pendidikan">Pendidikan</a></li>
+            <li><a href="#organisasi">Organisasi</a></li>
+            <li><a href="#keahlian">Keahlian</a></li>
+            <li><a href="#hobi">Hobi</a></li>
+            <li><a href="#praktikum">Praktikum</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <!-- BIODATA SECTION -->
+        <section id="biodata" style="padding-top: 40px;">
+            <div class="subtitle">01 · TENTANG SAYA</div>
+            <h2>Biodata</h2>
+            <p class="section-desc">
+                Saya pribadi yang antusias, bertanggung jawab, dan terbuka terhadap pengalaman baru. Saya percaya proses belajar dan kolaborasi adalah bagian penting untuk berkembang.
+            </p>
+            <div class="biodata-grid">
+                <div class="card biodata-card">
+                    <div class="label">NAMA LENGKAP</div>
+                    <div class="value">Muhammad Nadzril Ilham</div>
+                </div>
+                <div class="card biodata-card">
+                    <div class="label">TEMPAT, TANGGAL LAHIR</div>
+                    <div class="value">Majalengka, 06 Januari 2010</div>
+                </div>
+                <div class="card biodata-card">
+                    <div class="label">DOMISILI</div>
+                    <div class="value">Majalengka, Jawa Barat</div>
+                </div>
+                <div class="card biodata-card">
+                    <div class="label">EMAIL</div>
+                    <div class="value">muhammadnadzrililham911@gmail.com</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PENDIDIKAN SECTION -->
+        <section id="pendidikan">
+            <div class="subtitle">02 · PERJALANAN BELAJAR</div>
+            <h2>Pendidikan</h2>
+            
+            <div class="card">
+                <div class="card-header">2025-Sekarang</div>
+                <div class="card-title">SMKN 1 Leuwimunding</div>
+                <div class="card-sub">Teknik Jaringan Komputer dan Telekomunikasi</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">2022 — 2025</div>
+                <div class="card-title">SMPN 2 Nanggerang</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">2017 — 2022</div>
+                <div class="card-title">SDN 1 Nanggerang</div>
+            </div>
+        </section>
+
+        <!-- ORGANISASI SECTION -->
+        <section id="organisasi">
+            <div class="subtitle">03 · TUMBUH BERSAMA</div>
+            <h2>Pengalaman Organisasi</h2>
+
+            <div class="card">
+                <div class="card-header">2025-Sekarang</div>
+                <div class="card-title">Karang Taruna Desa Nanggerang</div>
+                <p class="card-text">
+                    Berpartisipasi dalam kegiatan dan program kerja, serta berkolaborasi dengan anggota tim untuk mencapai tujuan bersama.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- KEAHLIAN SECTION -->
+        <section id="keahlian">
+            <div class="subtitle">04 · HAL YANG SAYA KUASAI</div>
+            <h2>Keahlian</h2>
+            <p class="section-desc">
+                Beberapa kemampuan yang terus saya asah melalui pengalaman dan pembelajaran.
+            </p>
+            <div class="skills-container">
+                <div class="skill-badge">Service Handphone</div>
+                <div class="skill-badge">Jaringan Komputer</div>
+                <div class="skill-badge">Installasi Lab dan Server</div>
+                <div class="skill-badge">Web Programming</div>
+
+            </div>
+        </section>
+
+        <!-- HOBI SECTION -->
+        <section id="hobi">
+            <div class="subtitle">05 · DI WAKTU LUANG</div>
+            <h2>Hobi</h2>
+            <p class="section-desc">
+                Kegiatan yang membantu saya tetap terinspirasi dan menjaga keseimbangan.
+            </p>
+            <div class="hobi-grid">
+                <div class="hobi-card">
+                    <span class="hobi-icon">🎮</span>
+                    <span class="hobi-name">Bermain Game</span>
+                </div>
+                <div class="hobi-card">
+                    <span class="hobi-icon">⛹️</span>
+                    <span class="hobi-name">Berolahraga</span>
+                </div>
+                <div class="hobi-card light">
+                    <span class="hobi-icon">🎸</span>
+                    <span class="hobi-name">Bermain Gitar</span>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- FOOTER -->
+        <footer>
+            Terima kasih sudah berkunjung · 2026 | Muhammad Nadzril Ilham
+        </footer>
+
+    </div>
+
+</body>
 </html>
